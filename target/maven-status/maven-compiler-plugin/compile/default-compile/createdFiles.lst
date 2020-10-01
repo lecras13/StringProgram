@@ -1,0 +1,16 @@
+com\epam\task5\view\FileResultPrint.class
+com\epam\task5\logic\CharacterPlaceholderByStringMethod.class
+com\epam\task5\data\enums\DataType.class
+com\epam\task5\data\ConsoleDataAcquirer.class
+com\epam\task5\Main.class
+com\epam\task5\view\ResultPrinter.class
+com\epam\task5\view\enums\PrintType.class
+com\epam\task5\data\DataAcquirer.class
+com\epam\task5\logic\CharacterPlaceholder.class
+com\epam\task5\data\FileDataAcquirer.class
+com\epam\task5\view\ConsoleResultPrinter.class
+com\epam\task5\view\PrintFactory.class
+com\epam\task5\data\DataFactory$1.class
+com\epam\task5\data\DataFactory.class
+com\epam\task5\entity\Text.class
+com\epam\task5\view\PrintFactory$1.class
