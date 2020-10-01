@@ -1,4 +1,6 @@
-package com.epam.task5.logic;
+package com.epam.task5.logic.addparameters;
+
+import com.epam.task5.logic.addparameters.ParameterForStart;
 
 import java.io.BufferedReader;
 import java.io.IOException;
