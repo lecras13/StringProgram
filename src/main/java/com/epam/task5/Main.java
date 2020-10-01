@@ -1,7 +1,16 @@
 package com.epam.task5;
 
 
+import com.epam.task5.data.DataAcquirer;
 import com.epam.task5.data.DataFactory;
+import com.epam.task5.data.enums.DataType;
+import com.epam.task5.entity.Text;
+import com.epam.task5.logic.CharacterPlaceholderByStringMethod;
+import com.epam.task5.logic.ParameterForStart;
+import com.epam.task5.logic.ParametersForStartByConsole;
+import com.epam.task5.view.PrintFactory;
+import com.epam.task5.view.ResultPrinter;
+import com.epam.task5.view.enums.PrintType;
 
 /**
  * Variant 1
@@ -16,24 +25,25 @@ import com.epam.task5.data.DataFactory;
 public class Main {
     public static void main(String[] args){
         DataFactory factory = new DataFactory();
-       // runFromConsole(factory);
+        runFromConsole(factory);
         //runFromFile(factory);
     }
 
-/*    private static void runFromConsole(DataFactory dataFactory){
+    private static void runFromConsole(DataFactory dataFactory){
         DataAcquirer console = dataFactory.getDataAcquirer(DataType.CONSOLE);
-        Array array = console.getArray();
-        //print before sort
-        print(PrintType.CONSOLEPRINTER, array.toString());
-        //sort
-        array.bubbleSort();
-        //print after sort
-        print(PrintType.CONSOLEPRINTER, array.toString());
-        //binary search and print
-        print(PrintType.CONSOLEPRINTER, findTheResultBinary(array));
+        Text text = console.getText();
+
+        //getting parameters fo start
+        ParametersForStartByConsole parameterForStart = new ParametersForStartByConsole();
+        String[] parametes = parameterForStart.getParameters();
+        //changing by string method
+        CharacterPlaceholderByStringMethod characterPlaceholderByStringMethod = new CharacterPlaceholderByStringMethod();
+        Text newRedaction = characterPlaceholderByStringMethod.changeCharacter(text, parametes);
+        //print after
+        print(PrintType.CONSOLEPRINTER, newRedaction.toString());
     }
 
-    private static void runFromFile(DataFactory dataFactory){
+    /*private static void runFromFile(DataFactory dataFactory){
         DataAcquirer file = dataFactory.getDataAcquirer(DataType.FILE);
         Array array = file.getArray();
         //print before sort
@@ -50,11 +60,11 @@ public class Main {
         BinarySearch binarySearch = new BinarySearch();
         String result = binarySearch.searchingBinary(array);
         return result;
-    }
+    }*/
 
     private static void print(PrintType type, String result){
         PrintFactory printFactory = new PrintFactory();
         ResultPrinter resultPrinter = printFactory.getResultPrinter(type);
         resultPrinter.print(result);
-    }*/
+    }
 }

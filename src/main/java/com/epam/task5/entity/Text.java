@@ -1,17 +1,14 @@
 package com.epam.task5.entity;
 
-import java.util.List;
-
-
 public final class Text {
-    private List<String> strings;
+    private String data;
 
-    public Text(List<String> strings){
-        this.strings = strings;
+    public Text(String strings){
+        this.data = strings;
     }
 
-    public void setStrings(List<String> strings){
-        this.strings = strings;
+    public String getStrings(){
+        return data;
     }
 
     @Override
@@ -21,18 +18,16 @@ public final class Text {
 
         Text text = (Text) o;
 
-        return strings.equals(text.strings);
+        return data != null ? data.equals(text.data) : text.data == null;
     }
 
     @Override
     public int hashCode(){
-        return strings.hashCode();
+        return data != null ? data.hashCode() : 0;
     }
 
     @Override
     public String toString(){
-        return "Text{" +
-                "strings=" + strings +
-                '}';
+        return data;
     }
 }

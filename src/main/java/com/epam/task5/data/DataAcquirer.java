@@ -1,7 +1,7 @@
 package com.epam.task5.data;
 
-import java.util.List;
+import com.epam.task5.entity.Text;
 
 public interface DataAcquirer {
-    List<String> getString();
+   public Text getText();
 }
