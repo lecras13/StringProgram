@@ -9,17 +9,18 @@ public class CharacterPlaceholderByCharMethod implements CharacterPlaceholder {
         int numberCharacter = Integer.parseInt(parameters[0]);
         char toChange = parameters[1].charAt(0);
         int count = 0;
-        String toReturn = null;
 
         for (int i = 0; i < chars.length; i++){
             if(chars[i] == ' '){
                 count = 0;
+            }else {
+                count++;
             }
             if (count == numberCharacter){
                 chars[i] = toChange;
             }
         }
-        toReturn = chars.toString();
+        String toReturn = new String(chars);
         return new Text(toReturn);
     }
 }

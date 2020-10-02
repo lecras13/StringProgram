@@ -19,6 +19,6 @@ public class Main {
     public static void main(String[] args){
         DataFactory factory = new DataFactory();
         runFromConsole(factory);
-        runFromFile(factory);
+        //runFromFile(factory);
     }
 }

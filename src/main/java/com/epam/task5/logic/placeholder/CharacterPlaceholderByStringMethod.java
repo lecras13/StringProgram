@@ -19,7 +19,7 @@ public class CharacterPlaceholderByStringMethod implements CharacterPlaceholder 
             }
             toReturn[i] = words[i];
         }
-        return new Text(stringConverte(toReturn));
+        return new Text(stringConverte(toReturn).trim());
     }
 
     private String[] parseData(String data){

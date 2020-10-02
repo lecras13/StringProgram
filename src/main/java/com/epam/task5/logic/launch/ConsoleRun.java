@@ -22,7 +22,7 @@ public class ConsoleRun {
 
         //changing by string method
         CharacterPlaceholderByStringMethod characterPlaceholderByStringMethod = new CharacterPlaceholderByStringMethod();
-        //Text newRedaction = characterPlaceholderByStringMethod.changeCharacter(text, parametes);
+        Text newRedaction = characterPlaceholderByStringMethod.changeCharacter(text, parametes);
 
         //changing by Char method
         CharacterPlaceholderByCharMethod characterPlaceholderByCharMethod = new CharacterPlaceholderByCharMethod();
@@ -30,7 +30,7 @@ public class ConsoleRun {
 
         //changing by Regular method
         CharacterPlaceholderByRegularExp characterPlaceholderByRegularExp = new CharacterPlaceholderByRegularExp();
-        Text newRedaction = characterPlaceholderByRegularExp.changeCharacter(text, parametes);
+        //Text newRedaction = characterPlaceholderByRegularExp.changeCharacter(text, parametes);
 
         //print after
         PrintFactory printFactory = new PrintFactory();
