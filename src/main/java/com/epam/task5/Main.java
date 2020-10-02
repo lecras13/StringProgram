@@ -3,6 +3,7 @@ package com.epam.task5;
 import com.epam.task5.data.DataFactory;
 
 import static com.epam.task5.logic.launch.ConsoleRun.runFromConsole;
+import static com.epam.task5.logic.launch.FileRun.runFromFile;
 
 /**
  * Variant 1
@@ -18,10 +19,6 @@ public class Main {
     public static void main(String[] args){
         DataFactory factory = new DataFactory();
         runFromConsole(factory);
-        //runFromFile(factory);
+        runFromFile(factory);
     }
-
-
-
-
 }
