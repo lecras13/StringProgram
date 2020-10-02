@@ -16,11 +16,10 @@ public class FileRun {
         print(PrintType.FILEPRINTER, array.toString());
         //binary search and print
         print(PrintType.FILEPRINTER, findTheResultBinary(array));
-    }*/
-
-    private static void print(PrintType type, String result){
-        PrintFactory printFactory = new PrintFactory();
-        ResultPrinter resultPrinter = printFactory.getResultPrinter(type);
-        resultPrinter.print(result);
     }
+
+    //print after
+    PrintFactory printFactory = new PrintFactory();
+        printFactory.getResultPrinter(PrintType.CONSOLEPRINTER).print(newRedaction.toString());*/
+
 }

@@ -1,7 +1,6 @@
 package com.epam.task5.logic.placeholder;
 
 import com.epam.task5.entity.Text;
-import com.epam.task5.logic.placeholder.CharacterPlaceholder;
 
 public class CharacterPlaceholderByStringMethod implements CharacterPlaceholder {
     public Text changeCharacter(Text text, String[] parameters){
