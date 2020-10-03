@@ -4,10 +4,10 @@ import com.epam.task5.entity.Text;
 import org.junit.Assert;
 import org.junit.Test;
 
-public class CharacterPlaceholderByCharMethodTest {
+public class ProcessorByCharMethodTest {
     @Test
     public void changeCharacterWithRightArguments(){
-        CharacterPlaceholderByCharMethod characterPlaceholderByCharMethod = new CharacterPlaceholderByCharMethod();
+        ProcessorByCharMethod characterPlaceholderByCharMethod = new ProcessorByCharMethod();
         String forControl = "Java";
         Text text = new Text(forControl);
         String[] mas = new String[]{"1", "K"};
@@ -18,7 +18,7 @@ public class CharacterPlaceholderByCharMethodTest {
 
     @Test(expected = NumberFormatException.class)
     public void changeCharacterWithWrongArguments(){
-        CharacterPlaceholderByCharMethod characterPlaceholderByCharMethod = new CharacterPlaceholderByCharMethod();
+        ProcessorByCharMethod characterPlaceholderByCharMethod = new ProcessorByCharMethod();
         String forControl = "Java";
         Text text = new Text(forControl);
         String[] mas = new String[]{"K", "1"};

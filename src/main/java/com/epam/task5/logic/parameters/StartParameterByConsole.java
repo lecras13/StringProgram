@@ -1,21 +1,26 @@
-package com.epam.task5.logic.addparameters;
+package com.epam.task5.logic.parameters;
 
+import com.epam.task5.entity.Parameter;
+import com.epam.task5.exception.ExceptionData;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
-public class ParametersForStartByConsole implements ParameterForStart {
-    public String[] getParameters(){
-        String[] parameters = new String[2];
-
+public class StartParameterByConsole implements StartParameter {
+    public Parameter getParameters() throws ExceptionData{
+        String[] parameters = new String[3];
         BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
         try {
             System.out.println("Enter number position to change:");
             parameters[0] = reader.readLine();
             System.out.println("Enter replacement character:");
             parameters[1] = reader.readLine();
+            System.out.println("Enter type to print:");
+            parameters[2] = reader.readLine();
+            Parameter parameter = new Parameter(parameters);
+            return parameter;
         } catch (IOException e) {
-            e.printStackTrace();
+            throw new ExceptionData();
         } finally {
             if (reader != null) {
                 try {
@@ -25,6 +30,5 @@ public class ParametersForStartByConsole implements ParameterForStart {
                 }
             }
         }
-        return parameters;
     }
 }

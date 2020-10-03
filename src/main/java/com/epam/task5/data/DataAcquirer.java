@@ -1,7 +1,8 @@
 package com.epam.task5.data;
 
-import com.epam.task5.entity.Text;
+
+import com.epam.task5.exception.ExceptionData;
 
 public interface DataAcquirer {
-   public Text getText();
+   String getText() throws ExceptionData;
 }

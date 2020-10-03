@@ -1,21 +1,19 @@
 package com.epam.task5.data;
 
-import com.epam.task5.entity.Text;
-
+import com.epam.task5.exception.ExceptionData;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
 public class ConsoleDataAcquirer implements DataAcquirer {
-    public Text getText(){
-        String toReturn = null;
+
+    public String getText() throws ExceptionData{
         BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
         try {
             System.out.println("Enter text:");
-                toReturn =reader.readLine();
+            return reader.readLine();//return
         } catch (IOException e) {
-            e.printStackTrace();
+            throw new ExceptionData();
         }
-        return new Text(toReturn);
     }
 }

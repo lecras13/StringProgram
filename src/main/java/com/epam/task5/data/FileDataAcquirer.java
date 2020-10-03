@@ -1,9 +1,7 @@
 package com.epam.task5.data;
 
-import com.epam.task5.entity.Text;
-
+import com.epam.task5.exception.ExceptionData;
 import java.io.BufferedReader;
-import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 
@@ -14,16 +12,13 @@ public class FileDataAcquirer implements DataAcquirer {
         this.fileName = fileName;
     }
 
-    public Text getText(){
-        String toReturn = null;
+    public String getText() throws ExceptionData{
         BufferedReader reader = null;
         try {
             reader = new BufferedReader(new FileReader(fileName));
-                toReturn =reader.readLine();
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
+                return reader.readLine();
         } catch (IOException e) {
-            e.printStackTrace();
+            throw new ExceptionData();
         } finally {
             if (reader != null) {
                 try {
@@ -33,6 +28,5 @@ public class FileDataAcquirer implements DataAcquirer {
                 }
             }
         }
-        return new Text(toReturn);
     }
 }
