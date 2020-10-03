@@ -1,12 +1,14 @@
 package com.epam.task5;
 
 import com.epam.task5.data.DataAcquirer;
+import com.epam.task5.data.factory.ConsoleDataAcquirerFactory;
+import com.epam.task5.data.factory.FileDataAcquirerFactory;
+import com.epam.task5.entity.Parameter;
+import com.epam.task5.exception.ExceptionData;
 import com.epam.task5.logic.parameters.StartParameterByConsole;
-import com.epam.task5.logic.placeholder.ProcessorByCharMethod;
-import com.epam.task5.logic.placeholder.ProcessorByRegularExp;
-import com.epam.task5.logic.placeholder.ProcessorByStringMethod;
+import com.epam.task5.logic.placeholder.TextProcessor;
+import com.epam.task5.logic.placeholder.factory.ProcessorByCharFactory;
 import com.epam.task5.view.PrintFactory;
-import com.epam.task5.view.enums.PrintType;
 
 /**
  * Variant 1
@@ -19,59 +21,32 @@ import com.epam.task5.view.enums.PrintType;
  */
 
 public class Main {
-    public static void main(String[] args){
-        DataFactory factory = new DataFactory();
-        runFromConsole(factory);
-        runFromFile(factory);
-    }
+    public static void main(String[] args) throws ExceptionData{
+        DataAcquirer dataAcquirer = new ConsoleDataAcquirerFactory().createFactory();
+       // String text = dataAcquirer.getText();
 
-    public void runFromConsole(DataFactory dataFactory){
-        DataAcquirer console = dataFactory.getDataAcquirer(DataType.CONSOLE);
-        Text text = console.getText();
+        DataAcquirer dataAcquirer1 = new FileDataAcquirerFactory().createFactory();
+        String text = dataAcquirer1.getText();
 
-        //getting parameters fo start
-        StartParameterByConsole parameterForStart = new StartParameterByConsole();
-        String[] parametes = parameterForStart.getParameters();
+        StartParameterByConsole startParameterByConsole = new StartParameterByConsole();
+        Parameter parameter = startParameterByConsole.getParameters();
+        int position = parameter.getPositionToChange();
+        String character = parameter.getCharacter();
+        String printType = parameter.getPrintType();
 
-        //changing by string method
-        ProcessorByStringMethod characterPlaceholderByStringMethod = new ProcessorByStringMethod();
-        // Text newRedaction = characterPlaceholderByStringMethod.changeCharacter(text, parametes[0], parametes[1]);
+        TextProcessor textProcessorChar = new ProcessorByCharFactory().createFactory();
+        String resultByChar = textProcessorChar.changeCharacter(text, position, character);
 
-        //changing by Char method
-        ProcessorByCharMethod characterPlaceholderByCharMethod = new ProcessorByCharMethod();
-        //Text newRedaction = characterPlaceholderByStringMethod.changeCharacter(text, parametes);
+        TextProcessor textProcessorRegex = new ProcessorByCharFactory().createFactory();
+        String resultByRegex = textProcessorRegex.changeCharacter(text, position, character);
 
-        //changing by Regular method
-        ProcessorByRegularExp characterPlaceholderByRegularExp = new ProcessorByRegularExp();
-        Text newRedaction = characterPlaceholderByRegularExp.changeCharacter(text, parametes);
+        TextProcessor textProcessorString = new ProcessorByCharFactory().createFactory();
+        String resultByString = textProcessorString.changeCharacter(text, position, character);
 
-        //print after
         PrintFactory printFactory = new PrintFactory();
-        printFactory.getResultPrinter(PrintType.CONSOLEPRINTER).print(newRedaction.toString());
-    }
-
-    public void runFromFile(DataFactory dataFactory){
-        DataAcquirer console = dataFactory.getDataAcquirer(DataType.FILE);
-        Text text = console.getText();
-
-        //getting parameters fo start
-        StartParameterByConsole parameterForStart = new StartParameterByConsole();
-        String[] parametes = parameterForStart.getParameters();
-
-        //changing by string method
-        ProcessorByStringMethod characterPlaceholderByStringMethod = new ProcessorByStringMethod();
-        //Text newRedaction = characterPlaceholderByStringMethod.changeCharacter(text, parametes);
-
-        //changing by Char method
-        ProcessorByCharMethod characterPlaceholderByCharMethod = new ProcessorByCharMethod();
-        //Text newRedaction = characterPlaceholderByStringMethod.changeCharacter(text, parametes);
-
-        //changing by Regular method
-        ProcessorByRegularExp characterPlaceholderByRegularExp = new ProcessorByRegularExp();
-        Text newRedaction = characterPlaceholderByRegularExp.changeCharacter(text, parametes);
-
-        //print after
-        PrintFactory printFactory = new PrintFactory();
-        printFactory.getResultPrinter(PrintType.FILEPRINTER).print(newRedaction.toString());
+        printFactory.getResultPrinter(printType).print(resultByChar);
+        printFactory.getResultPrinter(printType).print(resultByRegex);
+        printFactory.getResultPrinter(printType).print(resultByString);
     }
 }
+

@@ -12,6 +12,7 @@ public class FileDataAcquirer implements DataAcquirer {
         this.fileName = fileName;
     }
 
+    @Override
     public String getText() throws ExceptionData{
         BufferedReader reader = null;
         try {

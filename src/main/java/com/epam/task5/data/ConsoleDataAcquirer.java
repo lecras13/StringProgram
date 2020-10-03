@@ -6,7 +6,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 
 public class ConsoleDataAcquirer implements DataAcquirer {
-
+    @Override
     public String getText() throws ExceptionData{
         BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
         try {

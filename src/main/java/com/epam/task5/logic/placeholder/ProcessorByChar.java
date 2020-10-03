@@ -1,6 +1,6 @@
 package com.epam.task5.logic.placeholder;
 
-public class ProcessorByCharMethod implements TextProcessor {
+public class ProcessorByChar implements TextProcessor {
     public String changeCharacter(String text, int position, String character){
         char[] chars = text.toCharArray();
         int count = 0;
