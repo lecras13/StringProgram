@@ -2,26 +2,29 @@ package com.epam.task5.logic.parameters;
 
 import com.epam.task5.entity.Parameter;
 import com.epam.task5.exception.ExceptionData;
+import com.epam.task5.logic.placeholder.enums.ProcessorType;
+import com.epam.task5.view.enums.PrintType;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
-public class StartParameterByConsole implements StartParameter {
+public class ConsoleParameterReader implements ParameterReader {
     @Override
     public Parameter getParameters() throws ExceptionData{
-        String[] parameters = new String[3];
         BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
         try {
             System.out.println("Enter number position to change:");
-            parameters[0] = reader.readLine();
+            int position =Integer.parseInt(reader.readLine());
             System.out.println("Enter replacement character:");
-            parameters[1] = reader.readLine();
+            char character = reader.readLine().charAt(0);
+            System.out.println("Enter type to change(char or regex or string):");
+            ProcessorType processorType =ProcessorType.valueOf(reader.readLine().toUpperCase());
             System.out.println("Enter type to print(console or file):");
-            parameters[2] = reader.readLine().toUpperCase();
-            Parameter parameter = new Parameter(parameters);
+            PrintType printType =PrintType.valueOf(reader.readLine().toUpperCase());
+            Parameter parameter = new Parameter(position, character, processorType, printType);
             return parameter;
         } catch (IOException e) {
-            throw new ExceptionData();
+            throw new ExceptionData(e.getMessage());
         } finally {
             if (reader != null) {
                 try {

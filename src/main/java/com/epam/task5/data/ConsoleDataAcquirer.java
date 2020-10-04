@@ -11,9 +11,9 @@ public class ConsoleDataAcquirer implements DataAcquirer {
         BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
         try {
             System.out.println("Enter text:");
-            return reader.readLine();//return
+            return reader.readLine();
         } catch (IOException e) {
-            throw new ExceptionData();
+            throw new ExceptionData(e.getMessage());
         }
     }
 }

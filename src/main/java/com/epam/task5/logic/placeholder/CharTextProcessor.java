@@ -1,7 +1,7 @@
 package com.epam.task5.logic.placeholder;
 
-public class ProcessorByChar implements TextProcessor {
-    public String changeCharacter(String text, int position, String character){
+public class CharTextProcessor implements TextProcessor {
+    public String changeCharacter(String text, int position, char character){
         char[] chars = text.toCharArray();
         int count = 0;
         for (int i = 0; i < chars.length; i++){
@@ -11,7 +11,7 @@ public class ProcessorByChar implements TextProcessor {
                 count++;
             }
             if (count == position){
-                chars[i] = character.charAt(0);
+                chars[i] = character;
             }
         }
         String textAfter = new String(chars);

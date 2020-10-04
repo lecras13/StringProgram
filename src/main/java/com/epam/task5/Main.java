@@ -5,12 +5,12 @@ import com.epam.task5.data.factory.ConsoleDataAcquirerFactory;
 import com.epam.task5.data.factory.FileDataAcquirerFactory;
 import com.epam.task5.entity.Parameter;
 import com.epam.task5.exception.ExceptionData;
-import com.epam.task5.logic.parameters.StartParameterByConsole;
+import com.epam.task5.logic.parameters.ConsoleParameterReader;
 import com.epam.task5.logic.placeholder.TextProcessor;
-import com.epam.task5.logic.placeholder.factory.ProcessorByCharFactory;
-import com.epam.task5.logic.placeholder.factory.ProcessorByRegexFactory;
-import com.epam.task5.logic.placeholder.factory.ProcessorByStringFactory;
+import com.epam.task5.logic.placeholder.TextProcessorFactory;
+import com.epam.task5.logic.placeholder.enums.ProcessorType;
 import com.epam.task5.view.PrintFactory;
+import com.epam.task5.view.enums.PrintType;
 
 /**
  * Variant 1
@@ -24,33 +24,27 @@ import com.epam.task5.view.PrintFactory;
 
 public class Main {
     public static void main(String[] args) throws ExceptionData{
-        DataAcquirer dataAcquirer = new ConsoleDataAcquirerFactory().createFactory();
-       // String text = dataAcquirer.getText();
+        ConsoleDataAcquirerFactory consoleDataAcquirerFactory = new ConsoleDataAcquirerFactory();
+        DataAcquirer dataAcquirer = consoleDataAcquirerFactory.createFactory();
+        // String text = dataAcquirer.getText();
 
-        DataAcquirer dataAcquirer1 = new FileDataAcquirerFactory().createFactory();
+        FileDataAcquirerFactory fileDataAcquirerFactory = new FileDataAcquirerFactory();
+        DataAcquirer dataAcquirer1 = fileDataAcquirerFactory.createFactory();
         String text = dataAcquirer1.getText();
 
-        StartParameterByConsole startParameterByConsole = new StartParameterByConsole();
-        Parameter parameter = startParameterByConsole.getParameters();
-        int position = parameter.getPositionToChange();
-        String character = parameter.getCharacter();
-        String printType = parameter.getPrintType();
+        ConsoleParameterReader consoleParameterReader = new ConsoleParameterReader();
+        Parameter parameter = consoleParameterReader.getParameters();
+        int position = parameter.getPosition();
+        char character = parameter.getCharacter();
+        ProcessorType changeType = parameter.getProcessorType();
+        PrintType printType = parameter.getPrintType();
 
-
-
-        TextProcessor textProcessorChar = new ProcessorByCharFactory().createFactory();
-        String resultByChar = textProcessorChar.changeCharacter(text, position, character);
-
-        TextProcessor textProcessorRegex = new ProcessorByRegexFactory().createFactory();
-        String resultByRegex = textProcessorRegex.changeCharacter(text, position, character);
-
-        TextProcessor textProcessorString = new ProcessorByStringFactory().createFactory();
-        String resultByString = textProcessorString.changeCharacter(text, position, character);
+        TextProcessorFactory textProcessorFactory = new TextProcessorFactory();
+        TextProcessor textProcessor = textProcessorFactory.getTextProcessor(changeType);
+        String result = textProcessor.changeCharacter(text, position, character);
 
         PrintFactory printFactory = new PrintFactory();
-        printFactory.getResultPrinter(printType).print(resultByChar);
-        printFactory.getResultPrinter(printType).print(resultByRegex);
-        printFactory.getResultPrinter(printType).print(resultByString);
+        printFactory.getResultPrinter(printType).print(result);
     }
 }
 

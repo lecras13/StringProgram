@@ -1,5 +1,7 @@
 package com.epam.task5.view;
 
+import com.epam.task5.exception.ExceptionData;
+
 import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -11,7 +13,7 @@ public class FileResultPrint implements ResultPrinter {
         this.fileName = fileName;
     }
 
-    public void print(String result){
+    public void print(String result) throws ExceptionData{
         System.out.println("Open FileResultPrinter to know the result");
         BufferedWriter writer = null;
         try {
@@ -20,7 +22,7 @@ public class FileResultPrint implements ResultPrinter {
             writer.newLine();
             writer.write(str);
         } catch (IOException e) {
-            e.printStackTrace();
+            throw new ExceptionData(e.getMessage());
         } finally {
             if (writer != null) {
                 try {

@@ -19,7 +19,7 @@ public class FileDataAcquirer implements DataAcquirer {
             reader = new BufferedReader(new FileReader(fileName));
                 return reader.readLine();
         } catch (IOException e) {
-            throw new ExceptionData();
+            throw new ExceptionData(e.getMessage());
         } finally {
             if (reader != null) {
                 try {
