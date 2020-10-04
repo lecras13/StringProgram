@@ -5,25 +5,25 @@ import java.util.Arrays;
 public class Parameter {
     private String[] parameters;
 
-    public Parameter(String[] parameters){
+    public Parameter(String[] parameters) {
         this.parameters = parameters;
     }
 
-    public int getPositionToChange(){
+    public int getPositionToChange() {
         int position = Integer.parseInt(parameters[0]);
         return position;
     }
 
-    public String getCharacter(){
+    public String getCharacter() {
         return parameters[1];
     }
 
-    public String getPrintType(){
+    public String getPrintType() {
         return parameters[2];
     }
 
     @Override
-    public boolean equals(Object o){
+    public boolean equals(Object o) {
         if (this == o) {
             return true;
         }
@@ -36,12 +36,12 @@ public class Parameter {
     }
 
     @Override
-    public int hashCode(){
+    public int hashCode() {
         return Arrays.hashCode(parameters);
     }
 
     @Override
-    public String toString(){
+    public String toString() {
         return getPositionToChange() + " " + getCharacter();
     }
 }

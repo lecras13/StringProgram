@@ -8,6 +8,8 @@ import com.epam.task5.exception.ExceptionData;
 import com.epam.task5.logic.parameters.StartParameterByConsole;
 import com.epam.task5.logic.placeholder.TextProcessor;
 import com.epam.task5.logic.placeholder.factory.ProcessorByCharFactory;
+import com.epam.task5.logic.placeholder.factory.ProcessorByRegexFactory;
+import com.epam.task5.logic.placeholder.factory.ProcessorByStringFactory;
 import com.epam.task5.view.PrintFactory;
 
 /**
@@ -34,13 +36,15 @@ public class Main {
         String character = parameter.getCharacter();
         String printType = parameter.getPrintType();
 
+
+
         TextProcessor textProcessorChar = new ProcessorByCharFactory().createFactory();
         String resultByChar = textProcessorChar.changeCharacter(text, position, character);
 
-        TextProcessor textProcessorRegex = new ProcessorByCharFactory().createFactory();
+        TextProcessor textProcessorRegex = new ProcessorByRegexFactory().createFactory();
         String resultByRegex = textProcessorRegex.changeCharacter(text, position, character);
 
-        TextProcessor textProcessorString = new ProcessorByCharFactory().createFactory();
+        TextProcessor textProcessorString = new ProcessorByStringFactory().createFactory();
         String resultByString = textProcessorString.changeCharacter(text, position, character);
 
         PrintFactory printFactory = new PrintFactory();
